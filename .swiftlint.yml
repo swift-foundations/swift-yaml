@@ -1,4 +1,4 @@
-# SwiftLint configuration for swift-file-system
+# SwiftLint configuration for swift-yaml.
 # Inherits from the shared parent configuration in swift-foundations
 
 parent_config: https://raw.githubusercontent.com/swift-foundations/.github/main/.swiftlint.yml
@@ -6,3 +6,5 @@ parent_config: https://raw.githubusercontent.com/swift-foundations/.github/main/
 # Package-specific overrides
 disabled_rules:
   - function_parameter_count
+  - nesting
+  - type_name
