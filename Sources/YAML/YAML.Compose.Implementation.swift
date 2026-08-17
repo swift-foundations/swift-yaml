@@ -24,7 +24,9 @@ extension YAML.Compose.Implementation {
     mutating func compose() throws(YAML.Compose.Error) -> YAML.Representation.Graph {
         guard consumeStreamStart(), consumeDocumentStart() else { throw .invalidEvent }
         let root = try composeNode()
-        guard consumeDocumentEnd(), consumeStreamEnd(), position == events.count else { throw .invalidEvent }
+        guard consumeDocumentEnd(), consumeStreamEnd(), position == events.count else {
+            throw .invalidEvent
+        }
         do throws(YAML.Representation.Graph.Error) {
             return try builder.finalize(root: root)
         } catch let error {
@@ -32,7 +34,9 @@ extension YAML.Compose.Implementation {
         }
     }
 
-    private mutating func composeNode() throws(YAML.Compose.Error) -> YAML.Representation.Node.Identifier {
+    private mutating func composeNode() throws(YAML.Compose.Error)
+        -> YAML.Representation.Node.Identifier
+    {
         guard position < events.count else { throw .invalidEvent }
         switch events[position] {
         case .scalar(let content, let anchor, let tag, let style, _):

@@ -9,15 +9,21 @@ let package = Package(
         .iOS(.v26),
         .tvOS(.v26),
         .watchOS(.v26),
-        .visionOS(.v26)
+        .visionOS(.v26),
     ],
     products: [
         .library(name: "YAML", targets: ["YAML"])
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-primitives/swift-byte-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-lexer-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-standards/swift-yaml-standard.git", branch: "main")
+        .package(
+            url: "https://github.com/swift-primitives/swift-byte-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-lexer-primitives.git",
+            branch: "main"
+        ),
+        .package(url: "https://github.com/swift-standards/swift-yaml-standard.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -25,7 +31,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Byte Primitive", package: "swift-byte-primitives"),
                 .product(name: "Lexer Primitives", package: "swift-lexer-primitives"),
-                .product(name: "YAML Standard", package: "swift-yaml-standard")
+                .product(name: "YAML Standard", package: "swift-yaml-standard"),
             ],
             path: "Sources/YAML"
         ),
@@ -34,10 +40,10 @@ let package = Package(
             dependencies: [
                 .target(name: "YAML"),
                 .product(name: "Byte Primitive", package: "swift-byte-primitives"),
-                .product(name: "Byte Protocol Primitives", package: "swift-byte-primitives")
+                .product(name: "Byte Protocol Primitives", package: "swift-byte-primitives"),
             ],
             path: "Tests/YAML Tests"
-        )
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
@@ -51,6 +57,6 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
             .enableUpcomingFeature("MemberImportVisibility"),
             .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
             .enableExperimentalFeature("SuppressedAssociatedTypes"),
-            .enableUpcomingFeature("InferIsolatedConformances")
+            .enableUpcomingFeature("InferIsolatedConformances"),
         ]
 }

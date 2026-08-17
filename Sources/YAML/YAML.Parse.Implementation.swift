@@ -148,7 +148,9 @@ extension YAML.Parse.Implementation {
             guard UInt(content.count) <= limits.scalarLength else { throw .scalarLimit }
         }
         guard !content.isEmpty else { throw unexpected() }
-        append(.scalar(content: content, anchor: nil, tag: .nonSpecific, style: .plain, mark: start))
+        append(
+            .scalar(content: content, anchor: nil, tag: .nonSpecific, style: .plain, mark: start)
+        )
     }
 
     private mutating func parseAlias() throws(YAML.Parse.Error) {
@@ -167,13 +169,29 @@ extension YAML.Parse.Implementation {
         try parseNode(depth: depth + 1)
         switch output[outputPosition] {
         case .scalar(let content, _, let tag, let style, let mark):
-            output[outputPosition] = .scalar(content: content, anchor: anchor, tag: tag, style: style, mark: mark)
+            output[outputPosition] = .scalar(
+                content: content,
+                anchor: anchor,
+                tag: tag,
+                style: style,
+                mark: mark
+            )
 
         case .sequenceStart(_, let tag, let style, let mark):
-            output[outputPosition] = .sequenceStart(anchor: anchor, tag: tag, style: style, mark: mark)
+            output[outputPosition] = .sequenceStart(
+                anchor: anchor,
+                tag: tag,
+                style: style,
+                mark: mark
+            )
 
         case .mappingStart(_, let tag, let style, let mark):
-            output[outputPosition] = .mappingStart(anchor: anchor, tag: tag, style: style, mark: mark)
+            output[outputPosition] = .mappingStart(
+                anchor: anchor,
+                tag: tag,
+                style: style,
+                mark: mark
+            )
 
         default:
             throw .unexpectedCharacter("&", start)
@@ -222,7 +240,9 @@ extension YAML.Parse.Implementation {
     private mutating func consume(_ token: String) -> Bool {
         let expected = Array(token)
         guard position + expected.count <= characters.count else { return false }
-        guard Array(characters[position..<(position + expected.count)]) == expected else { return false }
+        guard Array(characters[position..<(position + expected.count)]) == expected else {
+            return false
+        }
         for _ in expected { advance() }
         return true
     }
