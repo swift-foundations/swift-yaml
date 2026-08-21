@@ -1,5 +1,3 @@
-// Licensed under Apache License v2.0.
-
 extension YAML.Compose {
     struct Implementation {
         private let events: [YAML.Serialization.Event]

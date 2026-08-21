@@ -1,5 +1,3 @@
-// Licensed under Apache License v2.0.
-
 public import Lexer_Primitives
 
 extension YAML.Parse {

@@ -1,5 +1,3 @@
-// Licensed under Apache License v2.0.
-
 extension YAML.Compose {
     public static func graph(
         from stream: YAML.Serialization.Stream,

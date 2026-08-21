@@ -1,15 +1,11 @@
-// Licensed under Apache License v2.0.
-
 extension YAML {
     @frozen
     public struct Limits: Sendable, Equatable {
-        // swift-linter:disable:next compound identifier
-        // REASON: This is one domain term with no sibling input limit namespace.
+
         public let inputBytes: UInt
         public let events: UInt
         public let depth: UInt
-        // swift-linter:disable:next compound identifier
-        // REASON: This is one domain term with no sibling scalar limit namespace.
+
         public let scalarLength: UInt
         public let nodes: UInt
         public let aliases: UInt

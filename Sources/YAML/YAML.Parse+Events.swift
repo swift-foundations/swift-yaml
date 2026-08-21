@@ -1,5 +1,3 @@
-// Licensed under Apache License v2.0.
-
 public import Byte_Primitive
 private import Lexer_Primitives
 
@@ -10,8 +8,7 @@ extension YAML.Parse {
     ) throws(YAML.Parse.Error) -> YAML.Serialization.Stream where C.Element == Byte {
         guard UInt(bytes.count) <= limits.inputBytes else { throw .inputLimit }
         let storage = bytes.map(\.underlying)
-        // SwiftLint models this standard-library byte array as Foundation Data.
-        // swiftlint:disable:next optional_data_string_conversion
+
         let source = String(decoding: storage, as: UTF8.self)
         guard Array(source.utf8) == storage else {
             throw .invalidEncoding(

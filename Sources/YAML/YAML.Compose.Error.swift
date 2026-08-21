@@ -1,5 +1,3 @@
-// Licensed under Apache License v2.0.
-
 extension YAML.Compose {
     @frozen
     public enum Error: Swift.Error, Sendable, Equatable {
